@@ -1,0 +1,66 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using GDIDrawer;
+
+namespace CMPE2800LabReview_BlockFallFinal
+{
+    class GridManager
+    {
+        //----------------------------------Field Member----------------------------
+        int i_GridXSize;                 //Dimensions of the x Axis grid
+        int i_GridYSize;                 //Dimensions of the y Axis grid
+        int i_BlockSize;                 //Size of the blocks
+        Block[,] b_BlockGrid;            //Grid that blocks are placed on
+        PlaceHolder[,] p_PlacHolderGrid; //Grid that keeps track of where the placeholder blocks are
+
+        //Constructor that creates the Block Grid, and PlaceHolder Grid
+        public GridManager(int m_x, int m_y, int m_dim)
+        {
+            i_GridXSize = m_x;
+            i_GridYSize = m_y;
+            i_BlockSize = m_dim;
+            b_BlockGrid = new Block[m_x, m_y];                            //Creation of Grid when the main form passes it to cosntructor
+            p_PlacHolderGrid = new PlaceHolder[i_GridXSize, i_GridYSize]; //Creation of PlaceHolder Grid
+        }
+
+        //----------------------------------Method----------------------------------
+
+        public void AddLiveBlock(Point pos)
+        {
+            if(b_BlockGrid[pos.X,pos.Y] == null)
+            {
+                Rectangle r_Dimensions = new Rectangle(pos.X, pos.Y, i_BlockSize, i_BlockSize);
+                b_BlockGrid[pos.X, pos.Y] = new Block(r_Dimensions, Color.Red, GridObject.State.Live);
+            }
+        }
+        public void AddStationaryBlock(Point pos)
+        {
+            if (b_BlockGrid[pos.X, pos.Y] == null)
+            {
+                Rectangle r_Dimensions = new Rectangle(pos.X, pos.Y, i_BlockSize, i_BlockSize);
+                b_BlockGrid[pos.X, pos.Y] = new Block(r_Dimensions, Color.Orange, GridObject.State.Stationary);
+            }
+        }
+
+        public void Render(CDrawer dr)
+        {
+            //dr.Clear();
+            //for (int x = 0; x < i_GridXSize; x++)
+            //{
+            //    for (int y = 0; y < i_GridYSize; y++)
+            //    {
+            //        if (b_BlockGrid[x, y] != null) 
+            //        dr.AddRectangle(b_BlockGrid[x, y].r_Dimensions.X * i_BlockSize, b_BlockGrid[x, y].r_Dimensions.Y * i_BlockSize, i_BlockSize, i_BlockSize, b_BlockGrid[x, y].c_Color, 1, Color.Black);
+            //    }
+            //}
+            //dr.Render();
+        }
+    }
+}

@@ -1,0 +1,31 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using GDIDrawer;
+
+namespace CMPE2800LabReview_BlockFallFinal
+{
+    abstract class GridObject
+    {
+        public enum State {Live, Stationary, Dying, SafeToFall, Falling, Retainer} //States that a block may exist as. Allows for state machine
+
+        //------------------------------------Grid Object Members--------------------------------
+        public Rectangle r_Dimensions; //Rectangle that holds the dimensions of a a block/square
+        public Color c_Color;          //Holds the color of each block
+        public State s_State;          //Holds the state that a block exists in
+
+        //Non-Instantiatable constructor for gridobject
+        public GridObject(Rectangle m_d, Color m_c, State m_s)
+        {
+            r_Dimensions = m_d;
+            c_Color = m_c;
+            s_State = m_s;
+        }
+    }
+}

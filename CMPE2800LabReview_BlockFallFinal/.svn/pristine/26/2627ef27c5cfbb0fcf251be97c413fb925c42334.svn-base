@@ -35,7 +35,6 @@
             // UI_Timer
             // 
             this.UI_Timer.Enabled = true;
-            this.UI_Timer.Tick += new System.EventHandler(this.UI_Timer_Tick);
             // 
             // Form1
             // 
